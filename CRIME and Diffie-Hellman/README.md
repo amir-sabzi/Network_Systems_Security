@@ -9,4 +9,4 @@ that can find and decipher contents of a web cookie.
 ### Man In The Middle Attack
 To perform this attack it's needed to have prior knowledge of ARP Poisoning and Diffie–Hellman key exchange. First I poisoned the ARP response to place a malicious host between two
 other hosts. Then I extrected pattern of the communication of two host and forge corresponding reponse for each of them. After that, Since we can exchange our public key with two hosts
-and also have our own private key, we are able to decipher symmetric key and then find flag. These steps are implmented in 
+and also have our own private key, we are able to decipher symmetric key and then find flag. These steps are implmented in [Man_In_Middle.py](https://github.com/amir-sabzi/Network_Systems_Security/blob/master/CRIME%20and%20Diffie-Hellman/Man_In_Middle.py) 
