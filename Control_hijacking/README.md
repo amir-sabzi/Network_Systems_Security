@@ -24,4 +24,7 @@ bf\xa0\xfb\xff\xbf\x9c\xfb\xff\xbf\xa1\xfb\xff\xbf\xa5\xfb\xff\xbf" + 160 * "w" 
 ```
 ## prog_vuln4
 In this part I used vulnerabilities of <b>scanf()</b> function which doesn't check whether input string match the space dedicated for it or not.  
-In this program stack guards were deactivated but there is <b>NON-Executable Stack</b> protection.
+In this program stack guards were deactivated but there is <b>NON-Executable Stack</b> protection. Since there is no canaries in the address space, we can change the return address of functions by causing overflow in the scanf() input. But unlike the prog_vuln1 because of NON-Executable Stack protection it's not possible to place the shell code in the scanf() input.  
+To overcome this type of protection, I used <b>Return-oriented programming</b>. In this type of exploit we should find some suitable gadgets in the assembly code of the program and sort them to execute a shell code. In the below figure you can see arrangment of stack after we rewrite the return address of main with buffer overflow.
+
+
