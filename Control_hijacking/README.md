@@ -25,6 +25,15 @@ bf\xa0\xfb\xff\xbf\x9c\xfb\xff\xbf\xa1\xfb\xff\xbf\xa5\xfb\xff\xbf" + 160 * "w" 
 ## prog_vuln4
 In this part I used vulnerabilities of <b>scanf()</b> function which doesn't check whether input string match the space dedicated for it or not.  
 In this program stack guards were deactivated but there is <b>NON-Executable Stack</b> protection. Since there is no canaries in the address space, we can change the return address of functions by causing overflow in the scanf() input. But unlike the prog_vuln1 because of NON-Executable Stack protection it's not possible to place the shell code in the scanf() input.  
-To overcome this type of protection, I used <b>Return-oriented programming</b>. In this type of exploit we should find some suitable gadgets in the assembly code of the program and sort them to execute a shell code. In the below figure you can see arrangment of stack after we rewrite the return address of main with buffer overflow.
-
-
+To overcome this type of protection, I used <b>Return-oriented programming</b>. In this type of exploit we should find some suitable gadgets in the assembly code of the program and sort them to execute a shell code. In the below figure you can see arrangment of stack after we rewrite the return address of main with buffer overflow.  
+<p align="center">
+<img src="https://github.com/amir-sabzi/Network_Systems_Security/blob/master/Control_hijacking/stack.png" alt="drawing" width="500" align="center"/>
+</p>
+To perform discribed actions we should run a simple python code to write input in hex format in a file and then run the code with the input has been read from file. you can see this simple python script down below.
+```
+from pwn import *
+payload = 16 * "a" + p64(0x7fffffffe468)+ p64(0x400683) + p64(0x601048) + p64(0x00000000004005e8)
+f= open("in.txt","w+")
+f.write(payload)
+f.close()
+```
